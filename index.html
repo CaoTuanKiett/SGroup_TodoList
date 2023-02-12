@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <link rel="stylesheet" href="./style.css">
+
+    <title>Todo Tasks</title>
+</head>
+<body onload="renderTodo()">
+    
+    <div class="app">
+
+        <div class="header">
+
+            <div class="header__left">
+                <div class="header__left--logo">
+                    <img src="./img/Screenshot_20230208_111007.png" alt="">
+                </div>
+
+                <div class="header__left--content">
+                    <p>Let’s get shit done!</p>
+                    <img src="./img/Screenshot_20230208_111322.png" alt="">
+                </div>
+            </div>
+
+            <div class="header__right">
+                <div class="header__right--content">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>New task</p>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="body">
+
+            <div class="list todo">
+                <div class="list__header todo__header">
+                    <p class="list__header--name">Todo</p>
+                    <p class="list__header--number">3</p>
+                </div>
+
+                <div class="list__item todoList">
+                   
+
+                    
+                </div>
+
+                
+
+                
+            </div>
+
+            <div class="list doing">
+                <div class="list__header doing__header">
+                    <p class="list__header--name">Doing</p>
+                    <p class="list__header--number">3</p>
+                </div>
+
+                <div class="list__item doingList">
+                    
+                </div>
+
+                
+            </div>
+
+            <div class="list finished">
+                <div class="list__header finished__header">
+                    <p class="list__header--name">Finished</p>
+                    <p class="list__header--number">3</p>
+                </div>
+
+                <div class="list__item finishedList">
+
+                </div>
+
+                
+            </div>
+
+            
+        </div>
+
+
+
+        <div class="addNew">
+
+            <div class="addNew__overlay"></div>
+
+            <div class="overlay__container">
+
+                <div class="overlay_header">
+                    <h2>Add new todo</h2>
+                </div>
+    
+                <div class="overlay__body">
+                    <input id="category" class="inputAdd" type="text"  placeholder="Category, Etc, Marketing..." >
+                    <span class="value__null"></span>
+
+                    <input id="title" class="inputAdd" type="text" placeholder="Title">
+                    <span class="value__null"></span>
+
+                    <textarea id="content" class="inputAdd" name="Content"  placeholder="Content"></textarea>
+                    <span class="value__null"></span>
+                </div>
+    
+                <input onclick="addNew()" class="submit" type="button" value="Submit">
+
+                <i class="overlay__container--icon addNew__iconCancel fa-solid fa-xmark"></i>
+
+            </div>
+
+        </div>
+
+        <div class="editTodo">
+
+            <div class="editTodo_overlay"></div>
+
+            <div class="overlay__container">
+
+                <div class="overlay_header">
+                    <h2>Edit Todo</h2>
+                </div>
+    
+                <div class="overlay__body">
+                    <input id="edtCategory" type="text"  placeholder="Category, Etc, Marketing..." >
+                    <input id="edtTitle" type="text" placeholder="Title">
+                    <textarea id="edtContent" name="Content" placeholder="Content"></textarea>
+                    <input id="index" type="hidden">
+                </div>
+
+                <div class="editTodo__listRadio">
+                    
+                    <div class="editTodo__itemRadio">
+                        <input type="radio" name="status" id="" checked>
+                        <p>Todo</p>
+                    </div>
+
+                    <div class="editTodo__itemRadio">
+                        <input type="radio" name="status" id="">
+                        <p>Doing</p>
+                    </div>
+
+                    <div class="editTodo__itemRadio">
+                        <input type="radio" name="status" id="">
+                        <p>Finished</p>
+                    </div>
+
+                </div>
+    
+                <input onclick="changeTodo()" class="submit" type="button" value="Submit">
+
+                <i class="overlay__container--icon edit__iconCancel fa-solid fa-xmark"></i>
+
+            </div>
+
+        </div>
+
+        
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
