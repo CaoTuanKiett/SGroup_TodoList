@@ -114,6 +114,7 @@
     flex-direction: column;
     justify-content: space-around;
     height: 254px;
+    min-height: 254px;
     width: 99%;
     padding: 20px;
     border-radius: 5px;

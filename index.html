@@ -16,7 +16,7 @@
 
     <title>Todo Tasks</title>
 </head>
-<body onload="renderTodo()">
+<body onload="renderTask()">
     
     <div class="app">
 
@@ -47,7 +47,7 @@
             <div class="list todo">
                 <div class="list__header todo__header">
                     <p class="list__header--name">Todo</p>
-                    <p class="list__header--number">3</p>
+                    <p class="list__header--number number__todo">3</p>
                 </div>
 
                 <div class="list__item todoList">
@@ -55,20 +55,59 @@
 
                     
                 </div>
-
-                
-
                 
             </div>
 
             <div class="list doing">
                 <div class="list__header doing__header">
                     <p class="list__header--name">Doing</p>
-                    <p class="list__header--number">3</p>
+                    <p class="list__header--number number__doing">3</p>
                 </div>
 
                 <div class="list__item doingList">
+                    <!-- <div class="item">
+                        <div class="item__header">
+                            <div class="item__header--title">
+                                <p class="item__title">Marketing</p> 
+                                <p class="item__name" >Write SEO article for new product</p>
+                            </div>
+                            
+                            
+                            <div class="item__header--icon">
+                                <i onclick="clickEdit()"  class="icon_edit fa-solid fa-pen"></i>
+                                <i class="icon_delete fa-solid fa-trash-can"></i>
+                            </div>
+                        </div>
+    
+                        <div class="item__content">
+                            <p>This is an existential moment for effective altruism and the rationalist community writ-large. </p>
+                        </div>
+    
+                        <div class="item__date">
+                            <i class="fa-regular fa-clock"></i>
+                            <p>June 30, 2022</p>
+                        </div>
+
+                        <div class="editTodo__listRadio">
                     
+                            <div class="editTodo__itemRadio">
+                                <input type="radio" name="status"   >
+                                <p>Todo</p>
+                            </div>
+        
+                            <div class="editTodo__itemRadio">
+                                <input type="radio" name="status" >
+                                <p>Doing</p>
+                            </div>
+        
+                            <div class="editTodo__itemRadio">
+                                <input type="radio" name="status" >
+                                <p>Finished</p>
+                            </div>
+        
+                        </div>
+                        
+                    </div> -->
                 </div>
 
                 
@@ -77,7 +116,7 @@
             <div class="list finished">
                 <div class="list__header finished__header">
                     <p class="list__header--name">Finished</p>
-                    <p class="list__header--number">3</p>
+                    <p class="list__header--number number__finished">3</p>
                 </div>
 
                 <div class="list__item finishedList">
@@ -115,6 +154,25 @@
     
                 <input onclick="addNew()" class="submit" type="button" value="Submit">
 
+                <!-- <div class="editTodo__listRadio">
+                    
+                    <div class="editTodo__itemRadio">
+                        <input class="hehehe" type="radio" name="status" checked >
+                        <p>Todo</p>
+                    </div>
+
+                    <div class="editTodo__itemRadio">
+                        <input type="radio" name="status" >
+                        <p>Doing</p>
+                    </div>
+
+                    <div class="editTodo__itemRadio">
+                        <input type="radio" name="status">
+                        <p>Finished</p>
+                    </div>
+
+                </div> -->
+
                 <i class="overlay__container--icon addNew__iconCancel fa-solid fa-xmark"></i>
 
             </div>
@@ -138,20 +196,20 @@
                     <input id="index" type="hidden">
                 </div>
 
-                <div class="editTodo__listRadio">
+                <div class="editTodo__listRadio" >
                     
                     <div class="editTodo__itemRadio">
-                        <input type="radio" name="status" id="" checked>
+                        <input id="radioTodo" type="radio" name="status" value="0" >
                         <p>Todo</p>
                     </div>
 
                     <div class="editTodo__itemRadio">
-                        <input type="radio" name="status" id="">
+                        <input id="radioDoing" type="radio" name="status" value="1" >
                         <p>Doing</p>
                     </div>
 
                     <div class="editTodo__itemRadio">
-                        <input type="radio" name="status" id="">
+                        <input id="radioFinished" type="radio" name="status" value="2" >
                         <p>Finished</p>
                     </div>
 
