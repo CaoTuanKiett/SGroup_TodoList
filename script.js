@@ -5,6 +5,27 @@ function resetInput() {
   document.getElementById("content").value = "";
 }
 
+// ngày tháng năm
+function date(){
+
+  const newDays = document.querySelectorAll('.date')
+
+  let today = new Date();
+  const options = {
+  year: "numeric",
+  day: "numeric",
+  month: "long",
+  // hour: "numeric",
+  // minute: "numeric",
+  };
+  let dateToday = today.toLocaleDateString("en-US", options);
+
+  return dateToday;
+
+}
+
+
+
 // SHOW AddNew ToDo
 
 document.querySelector(".header__right--content").onclick = () => {
@@ -42,6 +63,8 @@ function valueInput() {
   });
 }
 
+
+// Them mới Item
 function addNew() {
   valueInput();
 
@@ -68,6 +91,7 @@ function addNew() {
       category: category,
       title: title,
       content: content,
+      date: date(),
       status: '0',
     });
 
@@ -80,6 +104,7 @@ function addNew() {
   }
 }
 
+// Render
 function renderTask() {
   let listTask = localStorage.getItem("list_Todo")
     ? JSON.parse(localStorage.getItem("list_Todo"))
@@ -89,21 +114,11 @@ function renderTask() {
   let listDoing = "";
   let listFinis = "";
 
-  let today = new Date();
-  const options = {
-    year: "numeric",
-    day: "numeric",
-    month: "long",
-  };
-  let dateToday = today.toLocaleDateString("en-US", options);
-
-  let x = null;
-
 
 
   listTask.forEach((item, index) => {
     if (item.status == 0) {
-      listTo += `<div class="item">
+      listTo += `<div class="item " draggable="true">
                 <div class="item__header">
                     <div class="item__header--title">
                         <p class="item__title">${item.category}</p> 
@@ -124,7 +139,7 @@ function renderTask() {
 
                 <div class="item__date">
                     <i class="fa-regular fa-clock"></i>
-                    <p class="date">${dateToday}</p>
+                    <p class="date">${item.date}</p>
                 </div>
 
                 
@@ -132,7 +147,7 @@ function renderTask() {
 
       document.querySelector(".todoList").innerHTML = listTo;
     } else if (item.status == 1) {
-      listDoing += `<div class="item">
+      listDoing += `<div class="item" draggable="true">
                     <div class="item__header">
                         <div class="item__header--title">
                             <p class="item__title">${item.category}</p> 
@@ -153,7 +168,7 @@ function renderTask() {
 
                     <div class="item__date">
                         <i class="fa-regular fa-clock"></i>
-                        <p class="date">${dateToday}</p>
+                        <p class="date">${item.date}</p>
                     </div>
 
                 
@@ -161,7 +176,7 @@ function renderTask() {
 
       document.querySelector(".doingList").innerHTML = listDoing;
     } else {
-      listFinis += `<div class="item">
+      listFinis += `<div class="item" draggable="true">
                     <div class="item__header">
                         <div class="item__header--title">
                             <p class="item__title">${item.category}</p> 
@@ -182,7 +197,7 @@ function renderTask() {
 
                     <div class="item__date">
                         <i class="fa-regular fa-clock"></i>
-                        <p class="date">${dateToday}</p>
+                        <p class="date">${item.date}</p>
                     </div>
 
                 
@@ -193,6 +208,10 @@ function renderTask() {
   });
 
   renderNumber()
+  date()
+  
+  dragDrop()
+
 
 }
 
@@ -219,8 +238,19 @@ function clickEdit(index) {
   });
 
   document.getElementById("index").value = index;
+
+
+  // Turn Off Edit
+  document.querySelector(".editTodo_overlay").onclick = () => {
+    document.querySelector(".editTodo").classList.toggle("displayFlex");
+  };
+  
+  document.querySelector(".edit__iconCancel").onclick = () => {
+    document.querySelector(".editTodo").classList.toggle("displayFlex");
+  };
 }
 
+// Edit Item
 function changeTodo() {
   let listTask = localStorage.getItem("list_Todo")
     ? JSON.parse(localStorage.getItem("list_Todo"))
@@ -241,6 +271,7 @@ function changeTodo() {
     category: document.getElementById("edtCategory").value,
     title: document.getElementById("edtTitle").value,
     content: document.getElementById("edtContent").value,
+    date: document.querySelector('.date').innerText,
     status: statusValue,
   };
 
@@ -251,29 +282,9 @@ function changeTodo() {
   document.querySelector(".editTodo").classList.toggle("displayFlex");
 }
 
-// const editOption = document.querySelectorAll('.icon_edit')
-// editOption.forEach(option => {
-//     option.addEventListener('click', () => {
-//         document.querySelector('.editTodo').classList.toggle('displayFlex');
-//     });
-// });
 
-document.querySelector(".editTodo_overlay").onclick = () => {
-  document.querySelector(".editTodo").classList.toggle("displayFlex");
-};
 
-document.querySelector(".edit__iconCancel").onclick = () => {
-  document.querySelector(".editTodo").classList.toggle("displayFlex");
-};
-
-// Delete
-// const deleteOption = document.querySelectorAll(".icon_delete");
-// deleteOption.forEach((option) => {
-//   option.addEventListener("click", () => {
-//     alert("Bạn có chắc chắn muốn xóa không ??");
-//   });
-// });
-
+// Delete Item
 function deleteTodo(index) {
   
   if(confirm("Bạn có chắc chắn muốn xóa không ??") == true){
@@ -320,8 +331,6 @@ function renderNumber() {
   numberFinished.innerText = outputNumber(2)
 
 }
-
-
 
 
 

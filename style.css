@@ -14,7 +14,7 @@
 
 .app {
     background-color: white;
-    padding: 50px 70px;
+    padding: 0 70px;
     position: relative;
     width: 100%;
 }
@@ -121,6 +121,7 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     background-color: white;
     margin-bottom: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.23);
 }
 
 .item__header {
@@ -207,6 +208,7 @@
     max-height: 80vh;
     flex-direction: column;
     align-items: center;
+    height: 70vh;
 }
 
 
