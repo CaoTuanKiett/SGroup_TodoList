@@ -83,11 +83,12 @@ function addNew() {
     let title = document.getElementById("title").value;
     let content = document.getElementById("content").value;
 
-    let listTask = localStorage.getItem("list_Todo")
-      ? JSON.parse(localStorage.getItem("list_Todo"))
+    let listTask = localStorage.getItem("list_Task")
+      ? JSON.parse(localStorage.getItem("list_Task"))
       : [];
 
     listTask.push({
+      id: listTask.length + 1,
       category: category,
       title: title,
       content: content,
@@ -95,7 +96,7 @@ function addNew() {
       status: '0',
     });
 
-    localStorage.setItem("list_Todo", JSON.stringify(listTask));
+    localStorage.setItem("list_Task", JSON.stringify(listTask));
 
     document.querySelector(".addNew").classList.toggle("displayFlex");
 
@@ -106,8 +107,8 @@ function addNew() {
 
 // Render
 function renderTask() {
-  let listTask = localStorage.getItem("list_Todo")
-    ? JSON.parse(localStorage.getItem("list_Todo"))
+  let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
     : [];
 
   let listTo = "";
@@ -121,6 +122,7 @@ function renderTask() {
       listTo += `<div class="item " draggable="true">
                 <div class="item__header">
                     <div class="item__header--title">
+                        <p class="item__id" style="display: none;">${item.id}</p>
                         <p class="item__title">${item.category}</p> 
                         <p class="item__name" >${item.title}</p>
                     </div>
@@ -150,6 +152,7 @@ function renderTask() {
       listDoing += `<div class="item" draggable="true">
                     <div class="item__header">
                         <div class="item__header--title">
+                            <p class="item__id" style="display: none;">${item.id}</p>
                             <p class="item__title">${item.category}</p> 
                             <p class="item__name" >${item.title}</p>
                         </div>
@@ -179,6 +182,7 @@ function renderTask() {
       listFinis += `<div class="item" draggable="true">
                     <div class="item__header">
                         <div class="item__header--title">
+                            <p class="item__id" style="display: none;">${item.id}</p>
                             <p class="item__title">${item.category}</p> 
                             <p class="item__name" >${item.title}</p>
                         </div>
@@ -220,8 +224,8 @@ function renderTask() {
 function clickEdit(index) {
   document.querySelector(".editTodo").classList.toggle("displayFlex");
 
-  let listTask = localStorage.getItem("list_Todo")
-    ? JSON.parse(localStorage.getItem("list_Todo"))
+  let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
     : [];
 
   document.getElementById("edtCategory").value = listTask[index].category;
@@ -252,8 +256,8 @@ function clickEdit(index) {
 
 // Edit Item
 function changeTodo() {
-  let listTask = localStorage.getItem("list_Todo")
-    ? JSON.parse(localStorage.getItem("list_Todo"))
+  let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
     : [];
 
   let index = document.getElementById("index").value;
@@ -275,7 +279,7 @@ function changeTodo() {
     status: statusValue,
   };
 
-  localStorage.setItem("list_Todo", JSON.stringify(listTask));
+  localStorage.setItem("list_Task", JSON.stringify(listTask));
 
   renderTask();
 
@@ -288,12 +292,12 @@ function changeTodo() {
 function deleteTodo(index) {
   
   if(confirm("Bạn có chắc chắn muốn xóa không ??") == true){
-    let listTask = localStorage.getItem("list_Todo")
-    ? JSON.parse(localStorage.getItem("list_Todo"))
+    let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
     : [];
 
     listTask.splice(index, 1);
-    localStorage.setItem("list_Todo", JSON.stringify(listTask));
+    localStorage.setItem("list_Task", JSON.stringify(listTask));
 
     renderTask();
   }
@@ -306,8 +310,8 @@ function deleteTodo(index) {
 // hàm tính số item có trong từng list với x là vị trí status
 function outputNumber(x){
   let listNum = [];
-  let listTask = localStorage.getItem("list_Todo")
-    ? JSON.parse(localStorage.getItem("list_Todo"))
+  let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
     : [];
 
   listTask.forEach((item)=>{
@@ -331,6 +335,56 @@ function renderNumber() {
   numberFinished.innerText = outputNumber(2)
 
 }
+
+
+// kéo thả item
+
+// write a function to drag and drop items in a list
+function dragDrop() {
+  const boxLists = document.querySelectorAll(".list__item");
+  const itemDrag = document.querySelectorAll(".item");
+  let idItem = null;
+
+  let listTask = localStorage.getItem("list_Task")
+    ? JSON.parse(localStorage.getItem("list_Task"))
+    : [];
+
+
+
+  itemDrag.forEach((item, index) => {
+    item.addEventListener("dragstart", (event) => {
+      idItem = event.target.querySelector(".item__id").innerText;
+      event.dataTransfer.setData("text/plain", index);
+    });
+  });
+
+  boxLists.forEach((box, indexBox) => {
+    box.addEventListener("dragover", function (e) {
+      e.preventDefault();
+    });
+
+    box.addEventListener("drop", function (e) {
+      const idDrop = e.dataTransfer.getData("text/plain");
+
+      e.target.appendChild(itemDrag[idDrop]);
+     
+      listTask.forEach((item) => {
+        if (item.id == idItem) {
+          item.status = indexBox;
+          localStorage.setItem("list_Task", JSON.stringify(listTask));
+        }
+
+      });
+
+    });
+
+    
+  });
+}
+
+
+
+
 
 
 
