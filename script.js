@@ -28,17 +28,20 @@ function date(){
 
 // SHOW AddNew ToDo
 
-document.querySelector(".header__right--content").onclick = () => {
-  document.querySelector(".addNew").classList.toggle("displayFlex");
-};
+function showAddNew() {
+  document.querySelector(".header__right--content").onclick = () => {
+    document.querySelector(".addNew").classList.toggle("displayFlex");
+  };
+  
+  document.querySelector(".addNew__overlay").onclick = () => {
+    document.querySelector(".addNew").classList.toggle("displayFlex");
+  };
+  
+  document.querySelector(".addNew__iconCancel").onclick = () => {
+    document.querySelector(".addNew").classList.toggle("displayFlex");
+  };
+}
 
-document.querySelector(".addNew__overlay").onclick = () => {
-  document.querySelector(".addNew").classList.toggle("displayFlex");
-};
-
-document.querySelector(".addNew__iconCancel").onclick = () => {
-  document.querySelector(".addNew").classList.toggle("displayFlex");
-};
 
 // Kiểm tra input nhập dữ liệu chưa
 
@@ -66,6 +69,7 @@ function valueInput() {
 
 // Them mới Item
 function addNew() {
+
   valueInput();
 
   const valueNull = document.querySelectorAll(".value__null");
@@ -105,7 +109,7 @@ function addNew() {
   }
 }
 
-// Render
+// Render Task
 function renderTask() {
   let listTask = localStorage.getItem("list_Task")
     ? JSON.parse(localStorage.getItem("list_Task"))
@@ -210,6 +214,9 @@ function renderTask() {
       document.querySelector(".finishedList").innerHTML = listFinis;
     }
   });
+
+
+  showAddNew();
 
   renderNumber()
   date()
@@ -338,8 +345,6 @@ function renderNumber() {
 
 
 // kéo thả item
-
-// write a function to drag and drop items in a list
 function dragDrop() {
   const boxLists = document.querySelectorAll(".list__item");
   const itemDrag = document.querySelectorAll(".item");

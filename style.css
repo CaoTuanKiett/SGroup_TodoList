@@ -14,7 +14,7 @@
 
 .app {
     background-color: white;
-    padding: 0 70px;
+    padding: 0px 80px;
     position: relative;
     width: 100%;
 }
@@ -26,7 +26,7 @@
 }
 
 .header__left--logo img {
-    width: 180px;
+    width: 150px;
 }
 
 .header__left--content {
@@ -35,7 +35,7 @@
 }
 
 .header__left--content img {
-    width: 26px;
+    width: 20px;
 }
 
 .header__right {
@@ -113,9 +113,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    height: 254px;
-    min-height: 254px;
-    width: 99%;
+    height: 220px;
+    min-height: 220px;
+    width: 98%;
     padding: 20px;
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -140,12 +140,12 @@
     color: #4D8EFF;
     border-bottom: 2px solid #4D8EFF ;
     width: 84px;
-    margin-bottom: 10px;
+    margin-bottom: 18px;
 }
 
 .item__header--title .item__name {
     font-weight: 700;
-    padding-bottom: 22px;
+    padding-bottom: 4px;
     border-bottom: 2px solid #DBDBDB ;
 }
 
@@ -219,7 +219,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: none;
     align-items: center;
     justify-content: center;
@@ -318,7 +318,7 @@
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     display: none;
     align-items: center;
     justify-content: center;
@@ -369,6 +369,86 @@
 
     .list__item {
         max-height: 40vh;
+    }
+}
+
+
+/* Mobile*/
+@media ( max-width: 739px) { 
+
+    .app {
+        width: 100%;
+        height: 100%;
+        padding: 0 10px;
+    }
+
+    .overlay__container{
+        margin: 20px;
+    }
+
+
+    .addNew {
+        align-items: start;
+    }
+    
+
+    .item__header--title .item__title {
+        font-size: 14px;
+        width: 70px;
+        margin-bottom: 10px;
+    }
+
+    .item__header--title .item__name {
+        font-size: 14px;
+    }
+
+    .item__content p {
+        font-size: 14px;
+    }
+
+    .item__date p {
+        font-size: 14px;
+    }
+
+    .overlay__container {
+        width: 400px;
+        height: 370px;
+        padding: 20px;
+    }
+
+    .addNew .overlay__container {
+        margin-top: 200px;
+    }
+
+    .overlay_header h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .overlay__body input {
+        font-size: 14px;
+    }
+
+    .overlay__body textarea {
+        font-size: 14px;
+    }
+
+    .submit {
+        font-size: 16px;
+    }
+
+    .overlay__container--icon {
+        font-size: 18px;
+    }
+
+    .editTodo__listRadio {
+        margin: 0;
+    }
+
+
+
+    .editTodo__itemRadio {
+        margin-bottom: 10px;
     }
 }
 
